@@ -1,0 +1,256 @@
+//S11108048 Avinash Narayan  
+//S11110926 Kunal Singh       
+#include <iostream>//Header that defines the standard input/output stream objects
+#include <stdlib.h>//This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
+#include <iomanip>//Header providing parametric manipulators
+
+using namespace std;
+void welcome_message()
+{
+	    cout << "\t********************************" << endl; 
+ 		cout << "\t*                              *" << endl;      
+	 	cout << "\t* WELCOME TO SANDWITCH SHOP 10 *" << endl;		//INTRODUCTION
+        cout << "\t*                              *" << endl;
+		cout << "\t********************************" << endl; 
+        cout << endl;
+			//Type of Sandwitch user likes to buy
+		cout << "\tTypes of Sandwitch Available:\n"  << endl;
+		cout << "\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" <<endl;
+		cout << "\t               |\tPlain\tRoll"<< endl;
+		cout << "\t1 Cheese       |\t$2.50\t3.00"<< endl;
+		cout << "\t2 Ham          |\t$3.00\t3.50"<< endl;
+        cout << "\t3 Corned Beef  |\t$3.00\t3.50"<< endl;
+        cout << "\t4 Chicken      |\t$3.20\t3.70"<< endl;
+        cout << "\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" <<endl;
+        cout << "\t$0.20 Cents with additional cheese on plain Sandwitch\n\tand $0.30 Cents for Roll" <<endl;
+	 	cout << "\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" <<endl;
+						
+}
+int sandwitch_validation(int sandwitch_type);//prototype  for validating sandwitch type
+int validtating_sandwitch_size(char size);	//prototype  for validating sandwitch size
+int validation_extracheese(char extra_cheese); //prototype  for validating extra cheese
+int main ()
+{
+//VARIBLES
+int counter=0;
+int sandwitch_type;
+double total,cost;
+char response='y';
+char size, extra_cheese;
+//CONSTANTS
+//Plain
+const double CHEESE_PLAIN = 2.50, HAM_PLAIN = 3.00, BEEF_PLAIN= 3.00, CHICHKEN_PLAIN =3.20;   
+const double EXTRA_PLAIN= 0.20; 
+//Roll
+const double CHEESE_ROLL =3.00, HAM_ROLL = 3.50, BEEF_ROLL= 3.50, CHICHKEN_ROLL =3.70;
+const double EXTRA_ROLL= 0.30;
+
+ 					// Coding 
+ 
+	while  (response=='y' || response=='Y' ) // if resonpse is yes then excute the program again 
+	{
+		system ("color 07"); 		//Chnages the color to White so that you know your input is correct
+		welcome_message(); 			//Prints Welcome message
+
+					
+
+	 	cout << "What Type of Sandwitch Would You Like to Purchase? "<<endl;	//Ask type of sandwitches 								
+		sandwitch_validation(sandwitch_type);//calling functions to validae for sandwitch type
+				
+		
+		system ("color 07"); //Chnages the color to White so that you know your input is correct
+		
+		
+		cout << "What Size would you like Plain or Roll [P/R] ";//Ask What size would u like to buy
+		cin >> size;
+		
+	
+	 	validtating_sandwitch_size(size);//calling functions to validae for Size of Sandwitch
+	  	
+	
+		system ("color 07"); //Chnages the color to White so that you know your input is correct
+		
+		cout << "Would You like to Have extra Cheese With Your Sandwitch[Y/N] ";//Asking for extra cheese
+		cin >> extra_cheese;
+ 	 				
+	
+	   validation_extracheese(extra_cheese);//calling functions to validae for extra cheese
+	  
+					//IF THEN ELSE STATEMENT
+			
+		if (extra_cheese=='N'&& size=='P') 
+ 	  {
+
+ 			if (sandwitch_type==1)
+ 			{
+ 			  cost=CHEESE_PLAIN;  
+			}
+	
+			else if (sandwitch_type==2)
+ 			{
+ 		      cost=HAM_PLAIN;
+			}
+	 
+	 		else if (sandwitch_type==3)
+ 			 {
+ 			   cost=BEEF_PLAIN;
+	 		 }
+	 
+			else
+ 			{
+ 			  cost=CHICHKEN_PLAIN;
+	 		}
+	   }
+		else if (extra_cheese=='N'&& size=='R') 
+	   {
+
+ 			if (sandwitch_type==1)
+ 			{
+ 			  cost=CHEESE_ROLL;
+			}
+	
+			else if (sandwitch_type==2)
+ 			{	
+ 			  cost=HAM_ROLL;
+	 		}
+	 
+	 		else if (sandwitch_type==3)
+ 			{
+ 			  cost=BEEF_ROLL;
+	 		}
+	 
+	    	else
+ 			{
+ 			 cost=CHICHKEN_ROLL;
+			}
+
+
+	   }
+			else 
+			{
+
+ 				if (sandwitch_type==1)
+				{
+		 		  cost= CHEESE_PLAIN + EXTRA_PLAIN;
+				}
+		
+				else if (sandwitch_type==2)
+				{
+		 		 cost= HAM_PLAIN + EXTRA_PLAIN;
+				}
+		
+				else if (sandwitch_type==3)
+				{
+		 		 cost= BEEF_PLAIN + EXTRA_PLAIN;
+				}
+		
+				else
+				{
+		 		 cost= CHICHKEN_PLAIN + EXTRA_PLAIN;
+				}
+		
+			}
+		
+		if (extra_cheese=='Y'&& size=='R') 
+		{
+
+ 			if (sandwitch_type==1)
+			{
+		 	 cost= CHEESE_ROLL + EXTRA_ROLL;
+			}
+		
+			else if (sandwitch_type==2)
+			{
+		 	 cost= HAM_ROLL + EXTRA_ROLL;
+			}
+		
+			else if (sandwitch_type==3)
+			{
+			 cost= BEEF_ROLL + EXTRA_ROLL;
+			}
+		
+			else
+			{
+			 cost= CHICHKEN_ROLL + EXTRA_ROLL;
+			}
+			 	 // DISPLAY THE COST
+		
+		}
+		 	system ("color 71");  //changes color so you know that cost has been displayed 		
+		 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		 	cout << "Your total Cost is: $"<<setiosflags(ios::fixed)<<setprecision(2)<<cost<<endl;
+		 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+
+		cout << "\t\t\t\t\tDo You Want To Run This Program Again [Y/N] ";// Asking the user to Excute the program again or no
+		cin >> response;
+		system("CLS");
+	
+		counter++;
+		total = cost + total;
+	  //if response Yes then goto the start :-D
+	}
+		cout << "total for today is "<< total <<endl;
+		cout<< "Total Transactions performed: \n\n"<< counter <<endl;
+				
+		system ("PAUSE"); 
+		return 0;
+		
+}
+				// FUNCTIONS
+		
+//Function for validating sandwitch type
+int sandwitch_validation(int sandwitch_type)
+{
+				
+	   		 cin >> sandwitch_type;
+		
+				while (sandwitch_type <1 || sandwitch_type >4)
+	  {
+	  	system ("color 04"); // changes the color to red so that it is easy to identify that there is an error
+	    cout<<"\n\t\""<<sandwitch_type<<"\" This is not a vaild option please try again: "<<endl;
+	    cin >> sandwitch_type;
+		
+		while (cin.fail())
+ 		{		
+		 	 if(cin.fail())
+		  	{
+				cin.clear();
+  		   		string input;
+		   		cin>>input;
+		   		system ("color 04"); // changes the color to red so that it is easy to identify that there is an error
+		   		cout<<"\n\t\""<<input<<"\" This is not a vaild option please try again: "; 
+		   		cin>>sandwitch_type;
+		  	  }		
+ 		 }
+      }	
+      return sandwitch_type;
+}
+
+//VALIDATING FOR Size of Sandwitch
+int validtating_sandwitch_size(char size)
+{
+
+		while(size !='R' && size!='P')
+	  {
+	  	system ("color 04"); // changes the color to red so that it is easy to identify that there is an error
+	   	cout<<"\n\t\""<<size<<"\" This is not a vaild option please try again: "<<endl;
+	   	cout << "What Size would you like Plain or Roll [P/R] ";
+	 	cin >> size;
+ 	  }
+return size;
+}
+
+	/*VALIDATING INPUT FOR extra cheese*/
+int validation_extracheese(char extra_cheese)
+{
+
+	   while(extra_cheese !='Y' && extra_cheese!='N')
+	  {
+	  	system ("color 04"); // changes the color to red so that it is easy to identify that there is an error
+	   	cout<<"\n\t\""<<extra_cheese<<"\" This is not a vaild option please try again: "<<endl;
+	   	cout << "Would You like to Have extra Cheese With Your Sandwitch[Y/N] ";
+		cin >> extra_cheese;
+	  }
+return extra_cheese;
+}
